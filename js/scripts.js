@@ -67,7 +67,7 @@ function showPlace(placeId) {
   $('.notes').html(place.notes);
   let buttons = $("#buttons");
   buttons.empty();
-  buttons.append("<button class='deleteButton' id=" +  place.id + ">Delete</button>");
+  buttons.append("<button class= 'btn btn-warning deleteButton' id=" +  place.id + ">Delete</button>");
 }
 
 function attachPlaceListeners() {
@@ -90,6 +90,13 @@ $(document).ready(function() {
     const inputtedLandmarks = $("input#new-landmarks").val();
     const inputtedTimeOfYear = $("input#new-timeOfYear").val();
     const inputtedNotes = $("input#notes").val();
+    
+    $("input#new-location").val("");
+    $("input#new-country").val("");
+    $("input#new-landmarks").val("");
+    $("input#new-timeOfYear").val("");
+    $("input#notes").val("");
+    
     let newPlace = new Place(inputtedLocation, inputtedCountry, inputtedLandmarks, inputtedTimeOfYear, inputtedNotes);
     placesTraveled.addPlace(newPlace);
     displayPlaceDetails(placesTraveled);

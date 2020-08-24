@@ -65,14 +65,19 @@ function showPlace(placeId) {
   $('.landmarks').html(place.landmarks);
   $('.time-of-year').html(place.timeOfYear);
   $('.notes').html(place.notes);
-  let buttons = $("buttons");
+  let buttons = $("#buttons");
   buttons.empty();
-  buttons.append("<button class='deleteButton' id=" + + place.id + ">Delete</button>");
+  buttons.append("<button class='deleteButton' id=" +  place.id + ">Delete</button>");
 }
 
 function attachPlaceListeners() {
   $('ul#places').on("click", "li", function() {
     showPlace(this.id);
+  });
+  $("#buttons").on("click", ".deleteButton",function() {
+    placesTraveled.deletePlace(this.id);
+    $('#show-place').hide();
+    displayPlaceDetails(placesTraveled);
   });
 };
 

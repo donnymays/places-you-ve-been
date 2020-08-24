@@ -10,7 +10,7 @@ PlacesTraveled.prototype.addPlace = function(Place) {
   this.places.push(Place);
 }
 
-PlacesTraveled.prototype.assignId = function() {s
+PlacesTraveled.prototype.assignId = function() {
   this.currentId += 1;
   return this.currentId;
 }
@@ -57,8 +57,28 @@ function displayPlaceDetails(placesTraveledToDisplay) {
   placesList.html(htmlForPlacesInfo);
 };
 
+function showPlace(placeId) {
+  const place = placesTraveled.findPlace(placeId);
+  $('#show-place').show();
+  $('.location').html(place.location);
+  $('.country').html(place.country);
+  $('.landmarks').html(place.landmarks);
+  $('.time-of-year').html(place.timeOfYear);
+  $('.notes').html(place.notes);
+  let buttons = $("buttons");
+  buttons.empty();
+  buttons.append("<button class='deleteButton' id=" + + place.id + ">Delete</button>");
+}
+
+function attachPlaceListeners() {
+  $('ul#places').on("click", "li", function() {
+    showPlace(this.id);
+  });
+};
+
 $(document).ready(function() {
-  $("form#new-contact").submit(function(event) {
+  attachPlaceListeners();
+  $("form#new-place").submit(function(event) {
     event.preventDefault();
     const inputtedLocation = $("input#new-location").val();
     const inputtedCountry = $("input#new-country").val();

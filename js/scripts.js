@@ -2,6 +2,40 @@
 
 function PlacesTraveled() {
   this.places = [];
+  this.currentId = 0;
+}
+
+PlacesTraveled.prototype.addPlace = function(Place) {
+  Place.id = this.assignId();
+  this.places.push(Place);
+}
+
+PlacesTraveled.prototype.assignId = function() {s
+  this.currentId += 1;
+  return this.currentId;
+}
+
+PlacesTraveled.prototype.findPlace = function(id) {
+  for (let i=0; i< this.places.length; i++) {
+      if (this.places[i]) {
+        if (this.places[i].id == id) {
+          return this.places[i];
+        }
+      }
+    };
+  return false;
+}
+
+PlacesTraveled.prototype.deletePlace = function(id) {
+  for (let i=0; i< this.places.length; i++) {
+    if (this.places[i]) {
+      if (this.places[i].id == id) {
+        delete this.places[i];
+        return true;
+        }
+    }  
+  };
+  return false;
 }
 
 function Place(location, country, landmarks, timeOfYear, notes) {
@@ -11,13 +45,11 @@ function Place(location, country, landmarks, timeOfYear, notes) {
   this.timeOfYear = timeOfYear;
   this.notes = notes;
 };
- 
-PlacesTraveled.prototype.addPlace = function(Place) {
-  this.places.push(Place);
-}
-
-
 
 let placesTraveled = new PlacesTraveled();
-let hawaii = new Place("Hawaii", "USA", ["Haleakela",'Honolua bay'], "March", "It was sunny and had nice weather.");
-PlacesTraveled.prototype.addPlace(hawaii);
+let place1 = new Place("Hawaii", "USA", ["Haleakela",'Honolua bay'], "March", "It was sunny and had nice weather.");
+let place2 = new Place("Asheville", "USA", ["Breweries", "Local art"], "August", "Hot and humid.  A nice liberal oasis in North Carolina.");
+let place3 = new Place ("Avon", "USA", ["snowboard", 'skiing'], 'december', 'cold & frigid');
+placesTraveled.addPlace(place1);
+placesTraveled.addPlace(place2);
+placesTraveled.addPlace(place3);

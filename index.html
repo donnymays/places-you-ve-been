@@ -11,6 +11,33 @@
 <body>
   <h1>Places Traveled</h1>
   <h2>Add a place</h2>
+  <form id="new-place">
+    <label for="new-location">Location</label>
+    <input type="text" id="new-location">
+    <label for="new-country">country</label>
+    <input type="text" id="new-country">
+    <label for="new-landmarks">landmarks</label>
+    <input type="text" id="new-landmarks">
+    <label for="new-timeOfYear">Time of year</label>
+    <input type="text" id="new-timeOfYear">
+    <label for="new-notes">notes</label>
+    <input type="text" id="new-notes">
+    <button type="submit" class="btn btn-danger">Submit!</button>
+  </form>
+  
+  <h2>Places</h2>
+  <ul id="places">
+  </ul>
 
+  <div id="show-place">
+    <p>location: <span class="location"></span></p>
+    <p>country: <span class="country"></span></p>
+    <p>landmarks: <span class="landmarks"></span></p>
+    <p>time of year: <span class="time-of-year"></span></p>
+    <p>notes: <span class="notes"></span></p>
+    <div id="buttons">
+
+    </div>
+  </div>
 </body>
 </html>

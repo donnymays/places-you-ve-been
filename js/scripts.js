@@ -47,9 +47,36 @@ function Place(location, country, landmarks, timeOfYear, notes) {
 };
 
 let placesTraveled = new PlacesTraveled();
-let place1 = new Place("Hawaii", "USA", ["Haleakela",'Honolua bay'], "March", "It was sunny and had nice weather.");
-let place2 = new Place("Asheville", "USA", ["Breweries", "Local art"], "August", "Hot and humid.  A nice liberal oasis in North Carolina.");
-let place3 = new Place ("Avon", "USA", ["snowboard", 'skiing'], 'december', 'cold & frigid');
-placesTraveled.addPlace(place1);
-placesTraveled.addPlace(place2);
-placesTraveled.addPlace(place3);
+
+function displayPlaceDetails(placesTraveledToDisplay) {
+  let placesList = $('ul#places');
+  let htmlForPlacesInfo = '';
+  placesTraveledToDisplay.places.forEach(function(place) {
+    htmlForPlacesInfo += "<li id=" + place.id + '>' + place.location + '</li>';
+  });
+  placesList.html(htmlForPlacesInfo);
+};
+
+$(document).ready(function() {
+  $("form#new-contact").submit(function(event) {
+    event.preventDefault();
+    const inputtedLocation = $("input#new-location").val();
+    const inputtedCountry = $("input#new-country").val();
+    const inputtedLandmarks = $("input#new-landmarks").val();
+    const inputtedTimeOfYear = $("input#new-timeOfYear").val();
+    const inputtedNotes = $("input#notes").val();
+    let newPlace = new Place(inputtedLocation, inputtedCountry, inputtedLandmarks, inputtedTimeOfYear, inputtedNotes);
+    placesTraveled.addPlace(newPlace);
+    displayPlaceDetails(placesTraveled);
+    // console.log(placesTraveled.places);
+  });
+});
+
+
+
+// let place1 = new Place("Hawaii", "USA", ["Haleakela",'Honolua bay'], "March", "It was sunny and had nice weather.");
+// let place2 = new Place("Asheville", "USA", ["Breweries", "Local art"], "August", "Hot and humid.  A nice liberal oasis in North Carolina.");
+// let place3 = new Place ("Avon", "USA", ["snowboard", 'skiing'], 'december', 'cold & frigid');
+// placesTraveled.addPlace(place1);
+// placesTraveled.addPlace(place2);
+// placesTraveled.addPlace(place3);
